@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>H5与RN之间的通信</title>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <input type="text" v-model="msg" />
+        </p>
+        <p>
+            <button @click="send">发送给RN</button>
+        </p>
+        <p>
+            <ul v-for="(info,index) in infos" :key="index">
+                <li>{{ info.msg }}</li>
+            </ul>
+        </p>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.4.3/vue.min.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'',
+                infos:[]
+            },
+            methods: {
+                send:function (){
+                    var _self=this;
+                    _self.infos.push({ msg:_self.msg })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

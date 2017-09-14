@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>H5与RN之间的通信</title>
+</head>
+<body>
+    <div id="app">
+        <h3>H5页面：</h3>
+        <p>
+            <input type="text" id="txtmsg"/>
+        </p>
+        <p>
+            <button id="btnsend">发送给RN</button>
+        </p>
+        <p>
+            <ul id="ulinfos">
+            </ul>
+        </p>
+    </div>
+
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script>
+        // 接收消息
+        function receivemsg(event){
+            if(event)
+                $("#ulinfos").append("<li>"+event+"</li>")
+        }
+        $(function(){
+            // 发送消息
+            $("#btnsend").on("click",function(){
+                if($("#txtmsg").val()!=""){
+                    window.postMessage($("#txtmsg").val())
+                }
+            })
+        })
+    </script>
+</body>
+</html>
